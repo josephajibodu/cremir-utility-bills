@@ -3,7 +3,7 @@
 @section('title', 'Buy Airtime, Data and make Bills payments and get cash rewards.')
 
 @section('content')
-    <div>
-        Landing Page
-    </div>
+    <h1 class="text-3xl font-bold underline">
+        Hello world!
+    </h1>
 @endsection
