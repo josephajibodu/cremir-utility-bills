@@ -1,0 +1,19 @@
+/* Custom Variables*/
+@import "./config/_variables.scss";
+@import "./config/_theme-config.scss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Structure */
+@import "./structure/_sidenav.scss";
+@import "structure/_topbar.scss";
+
+/* Components */
+@import "./components/_reboot.scss";
+@import "./components/_buttons.scss";
+@import "./components/_card.scss";
+@import "./components/_forms.scss";
+@import "./components/_print.scss";
+@import "./components/_helper.scss";
