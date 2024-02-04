@@ -1,48 +1,51 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>@yield('title') - Cremir Mobile Data</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Config -->
-        @vite('resources/js/config.js')
+    <title>@yield('title') - Cremir Mobile Data</title>
 
-        <!-- Styles -->
-        @vite(['resources/css/app.scss', 'resources/css/icons.scss', 'resources/js/app.js'])
+    <!-- Config -->
+    @vite('resources/js/config.js')
 
-        @stack('styles')
+    <!-- Styles -->
+    @vite(['resources/css/app.scss', 'resources/css/icons.scss', 'resources/js/app.js'])
 
-    </head>
-    <body class="antialiased">
-        <div class="flex wrapper">
-            <!-- Sidenav Menu -->
-            @include('partials.sidenav')
+    @stack('styles')
 
-            <!-- ============================================================== -->
-            <!-- Start Page Content here -->
-            <!-- ============================================================== -->
+</head>
 
-            <div class="page-content">
-                @include('partials.topbar')
+<body class="antialiased">
+    <div class="flex wrapper">
+        <!-- Sidenav Menu -->
+        @include('partials.sidenav')
 
-                <main class="flex-grow p-6 overflow-auto">
-                    @yield('content')
-                </main>
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
 
-                <!-- Footer Start -->
-                @include('partials.footer')
-                <!-- Footer End -->
-            </div>
+        <div class="page-content">
+            @include('partials.topbar')
 
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
+            <main class="flex-grow p-6 overflow-y-scroll">
+                @yield('content')
+            </main>
+
+            <!-- Footer Start -->
+            @include('partials.footer')
+            <!-- Footer End -->
         </div>
 
-        @include('partials.customizer')
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+    </div>
 
-    </body>
-    @stack('scripts')
+    @include('partials.customizer')
+
+</body>
+@stack('scripts')
+
 </html>

@@ -25,50 +25,66 @@
                         </div>
                     </div>
 
-                    <div class="flex gap-4">
-                        <button type="button" class="btn bg-light text-slate-900 dark:text-slate-200"><i class="mgc_add_fill text-base me-4"></i> Add Funds</button>
-                        <a href="#" type="button" class="btn bg-light text-slate-900 dark:text-slate-200"><i class="mgc_bank_card_line text-base me-4"></i> History</a>
-                    </div>
+                    <button type="button" class="btn bg-light text-slate-900 dark:text-slate-200"><i class="mgc_add_fill text-base me-4"></i> Add Funds</button>
                 </div>
             </div>
         </div>
 
-        <!-- Quick Links -->
+        <!-- Virtual bank account details -->
         <div class="lg:col-span-3 space-y-6">
             <div class="card p-6">
                 <div class="flex justify-between items-center mb-4">
-                    <p class="card-title">Buy airtime, data and pay bills</p>
+                    <p class="card-title">Your Virtual Bank account details</p>
+                    <span class="inline-flex items-center gap-1.5 py-1.5 px-3 rounded-full text-xs font-medium bg-gray-100 text-gray-800"><i class="mgc_copy_2_line"></i> Copy Account Number</span>
                 </div>
 
                 <div class="p-6">
                     <div class="flex gap-16">
-                        <!-- airtime -->
-                        <a href="#">
-                            <div class="border-2 border p-6 rounded-xl">
-                                <x-icons.airtime class="w-14 h-14" />
-                                <h3 class="text-xl mt-4">Buy Airtime</h3>
-                                <p class="text-base">Stay connected with your family and friends with instant top-ups</p>
+                        <!-- stat 1 -->
+                        <div class="flex items-center gap-5">
+                            <i data-feather="users" class="h-10 w-10"></i>
+                            <div class="">
+                                <h4 class="text-lg text-gray-700 dark:text-gray-300 font-medium">Joseph Oluwayomi Ajibodu</h4>
+                                <span class="text-sm">Account Holder</span>
                             </div>
-                        </a>
+                        </div>
 
-                        <!-- data -->
-                        <a href="#">
-                            <div class="border-2 border p-6 rounded-xl">
-                                <x-icons.data class="w-14 h-14" />
-                                <h3 class="text-xl mt-4">Buy Data</h3>
-                                <p class="text-base">Enjoy uninterrupted internet access with easy and convenient mobile data top-ups.</p>
+                        <!-- stat 2 -->
+                        <div class="flex items-center gap-5">
+                            <i data-feather="hash" class="h-10 w-10"></i>
+                            <div class="">
+                                <h4 class="text-lg text-gray-700 dark:text-gray-300 font-medium">8167297386</h4>
+                                <span class="text-sm">Account Number</span>
                             </div>
-                        </a>
+                        </div>
 
-                        <!-- bills -->
-                        <a href="#">
-                            <div class="border-2 border p-6 rounded-xl">
-                                <x-icons.bills class="w-14 h-14" />
-                                <h3 class="text-xl mt-4">Pay Bills</h3>
-                                <p class="text-base">Pay for your internet, cables, subscriptions and other utility bills all in one place.</p>
+                        <!-- stat 3 -->
+                        <div class="flex items-center gap-5">
+                            <i data-feather="briefcase" class="h-10 w-10"></i>
+                            <div class="">
+                                <h4 class="text-lg text-gray-700 dark:text-gray-300 font-medium">Opay Ltd</h4>
+                                <span class="text-sm">Bank Name</span>
                             </div>
-                        </a>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="bg-yellow-50 border border-yellow-200 rounded-md p-4" role="alert">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <i class="mgc_information_line text-xl"></i>
+                        </div>
+                        <div class="ms-4">
+                            <h3 class="text-sm text-yellow-800 font-semibold">
+                                Please note the following:
+                            </h3>
+                            <div class="mt-1 text-sm text-yellow-700">
+                                <ul>
+                                    <li>- We charge a flat fee of 100 Naira for every deposit</li>
+                                    <li>- You deposit reflects in the shortest time possible(few seconds)</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

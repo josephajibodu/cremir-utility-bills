@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AirtimeController;
+use App\Http\Controllers\DataTopupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,3 +19,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('airtime', [AirtimeController::class, 'index']);
+Route::get('data-topup', [DataTopupController::class, 'index']);
