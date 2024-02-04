@@ -1,19 +1,19 @@
 /* Custom Variables*/
-@import "./config/_variables.scss";
-@import "./config/_theme-config.scss";
+@import "config/variables";
+@import "config/theme-config";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* Structure */
-@import "./structure/_sidenav.scss";
-@import "structure/_topbar.scss";
+@import "structure/sidenav";
+@import "structure/topbar";
 
 /* Components */
-@import "./components/_reboot.scss";
-@import "./components/_buttons.scss";
-@import "./components/_card.scss";
-@import "./components/_forms.scss";
-@import "./components/_print.scss";
-@import "./components/_helper.scss";
+@import "components/reboot";
+@import "components/buttons";
+@import "components/card";
+@import "components/forms";
+@import "components/print";
+@import "components/helper";
