@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'airtimenigeria' => [
+        'url' => env('AIRTIMENIG_BASE_URL'),
+        'key' => env('AIRTIMENIG_API_KEY'),
+    ]
+
 ];
