@@ -105,7 +105,17 @@
 
                                         <div class="flex flex-wrap gap-3 mb-6">
                                             <div
-                                                class="inline-flex flex-col items-center gap-1.5 w-[80px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
+                                                class="inline-flex flex-col items-center gap-1.5 w-[90px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
+                                                <span class="text-base font-semibold">2.5GB</span>
+                                                <span class="text-xs">2 Days</span>
+                                                <span class="text-xs">&#8358;2,000</span>
+                                                <small class="text-[11px] text-green-500">&#8358;30 Cashback</small>
+                                                <div class="bg-green-100 w-full text-center text-[10px] p-1.5">Youtube Night
+                                                </div>
+                                            </div>
+
+                                            <div
+                                                class="inline-flex flex-col items-center gap-1.5 w-[90px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
                                                 <span class="text-base font-semibold">2.5GB</span>
                                                 <span class="text-xs">2 Days</span>
                                                 <span class="text-xs">&#8358;2,000</span>
@@ -114,7 +124,7 @@
                                             </div>
 
                                             <div
-                                                class="inline-flex flex-col items-center gap-1.5 w-[80px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
+                                                class="inline-flex flex-col items-center gap-1.5 w-[90px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
                                                 <span class="text-base font-semibold">2.5GB</span>
                                                 <span class="text-xs">2 Days</span>
                                                 <span class="text-xs">&#8358;2,000</span>
@@ -123,16 +133,7 @@
                                             </div>
 
                                             <div
-                                                class="inline-flex flex-col items-center gap-1.5 w-[80px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
-                                                <span class="text-base font-semibold">2.5GB</span>
-                                                <span class="text-xs">2 Days</span>
-                                                <span class="text-xs">&#8358;2,000</span>
-                                                <span class="text-xs text-green-500">&#8358;30 Cashback</span>
-                                                <div class="bg-green-100 w-full text-center p-1.5">Pay &#8358;98</div>
-                                            </div>
-
-                                            <div
-                                                class="inline-flex flex-col items-center gap-1.5 w-[80px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
+                                                class="inline-flex flex-col items-center gap-1.5 w-[90px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
                                                 <span class="text-base font-semibold">2.5GB</span>
                                                 <span class="text-xs">2 Days</span>
                                                 <span class="text-xs">&#8358;2,000</span>
@@ -148,7 +149,7 @@
                                         role="tabpanel" aria-labelledby="tabs-with-underline-item-2">
                                         <div class="flex flex-wrap gap-3 mb-6">
                                             <div
-                                                class="inline-flex flex-col items-center gap-1.5 w-[80px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
+                                                class="inline-flex flex-col items-center gap-1.5 w-[90px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
                                                 <span class="text-base font-semibold">2.5GB</span>
                                                 <span class="text-xs">2 Months</span>
                                                 <span class="text-xs">&#8358;5,000</span>
@@ -157,7 +158,7 @@
                                             </div>
 
                                             <div
-                                                class="inline-flex flex-col items-center gap-1.5 w-[80px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
+                                                class="inline-flex flex-col items-center gap-1.5 w-[90px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
                                                 <span class="text-base font-semibold">2.5GB</span>
                                                 <span class="text-xs">2 Days</span>
                                                 <span class="text-xs">&#8358;2,000</span>
@@ -166,7 +167,7 @@
                                             </div>
 
                                             <div
-                                                class="inline-flex flex-col items-center gap-1.5 w-[80px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
+                                                class="inline-flex flex-col items-center gap-1.5 w-[90px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
                                                 <span class="text-base font-semibold">2.5GB</span>
                                                 <span class="text-xs">2 Days</span>
                                                 <span class="text-xs">&#8358;2,000</span>
@@ -175,7 +176,7 @@
                                             </div>
 
                                             <div
-                                                class="inline-flex flex-col items-center gap-1.5 w-[80px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
+                                                class="inline-flex flex-col items-center gap-1.5 w-[90px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
                                                 <span class="text-base font-semibold">2.5GB</span>
                                                 <span class="text-xs">2 Days</span>
                                                 <span class="text-xs">&#8358;2,000</span>
@@ -218,6 +219,38 @@
                                     </div>
                                 </div>
                             @endforeach
+
+
+                        </div>
+                    </div>
+
+                    <div id="pay-now"
+                        class="fc-offcanvas-open:translate-y-0 translate-y-full fixed bottom-0 inset-x-0 transition-all duration-300 transform max-h-[40vh] h-full w-full z-50 bg-white border-b dark:bg-gray-800 dark:border-gray-700 hidden">
+                        <div class="flex justify-between items-center py-2 px-4 border-b dark:border-gray-700">
+                            <h3 class="font-medium">
+                                Offcanvas title
+                            </h3>
+                            <button
+                                class="inline-flex flex-shrink-0 justify-center items-center h-8 w-8 rounded-md text-gray-500 hover:text-gray-700  text-sm dark:text-gray-500 dark:hover:text-gray-400"
+                                data-fc-dismiss type="button">
+                                <span class="material-symbols-rounded">close</span>
+                            </button>
+                        </div>
+                        <div class="p-4">
+                            @foreach ([1, 2, 3, 4] as $trx)
+                                <div class="flex gap-3 items-center px-2 py-3 border-b">
+                                    <div class="flex flex-col flex-grow">
+                                        <div class="flex justify-between">
+                                            <p>Airtime Purchase</p>
+                                            <span class="font-bold"> -&#8358;2,500.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                            <button class="btn bg-primary text-white">
+                                Pay Now
+                            </button>
                         </div>
                     </div>
                 </form>
