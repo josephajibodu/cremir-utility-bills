@@ -4,14 +4,13 @@ namespace App\Services\AirtimeNigeria;
 
 use App\Services\AirtimeNigeria\DataObject\AirtimeTopupRequest;
 use App\Services\AirtimeNigeria\DataObject\DataTopupRequest;
-use Exception;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 class Topup
 {
     protected $apiBaseUrl;
+
     protected $apiToken;
 
     public function __construct()
@@ -41,12 +40,12 @@ class Topup
         return $this->makeRequest('POST', $url, $data->toArray());
     }
 
-    public function getPlans()
+    public function getPlans(): array
     {
         $url = "$this->apiBaseUrl/data/plans";
 
         // Set a unique cache key based on the URL
-        $cacheKey = 'plans_' . md5($url);
+        $cacheKey = 'plans_'.md5($url);
 
         // Check if the data is already cached
         if (Cache::has($cacheKey)) {
@@ -54,29 +53,12 @@ class Topup
         }
 
         // If not cached, make the API request
-        $plans = $this->makeRequest('GET', $url);
+        $response = $this->makeRequest('GET', $url);
 
         // Cache the data for a specified duration (e.g., 1 hour)
-        Cache::put($cacheKey, $plans, now()->addMinutes(5));
+        Cache::put($cacheKey, $response['data'], now()->addMinutes(5));
 
-        return $plans;
-
-//        $groupedPlans = $plansCollection->groupBy('network_operator');
-
-//        if (preg_match('/(\d+)days/', $string, $matches)) {
-//            $duration = $matches[1];
-//            echo "Duration: $duration days\n";
-//        } else {
-//            echo "Duration not found in the string.\n";
-//        }
-
-//        if (preg_match('/(\d+(\.\d+)?)([MGT]B)/', $string, $matches)) {
-//            $bundle = $matches[1];
-//            $data_type = $matches[3];
-//            echo "Bundle: $bundle $data_type\n";
-//        } else {
-//            echo "Bundle not found in the string.\n";
-//        }
+        return $response['data'];
     }
 
     public function getBalance()
@@ -93,7 +75,7 @@ class Topup
         return $this->makeRequest('GET', $url, ['reference' => $reference]);
     }
 
-    protected function makeRequest(string $method, string $url, array $data = null, $headers = [])
+    protected function makeRequest(string $method, string $url, ?array $data = null, $headers = [])
     {
         $defaultHeaders = collect([
             'Accept' => 'application/json',

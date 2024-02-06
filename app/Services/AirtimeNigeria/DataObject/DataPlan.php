@@ -6,17 +6,26 @@ use Illuminate\Contracts\Support\Arrayable;
 
 class DataPlan implements Arrayable
 {
+    public string $bundle;
+
+    public ?string $dataType;
+
     public function __construct(
         public string $networkOperator,
         public string $planSummary,
         public string $packageCode,
-        public int $planId,
+        public ?int $planId,
         public string $validity,
         public int $regularPrice,
         public int $agentPrice,
         public int $dealerPrice,
         public string $currency
     ) {
+        preg_match('/(\d+(\.\d+)?)([MGT]B)/', $this->planSummary, $matches);
+        $this->bundle = $matches[0];
+
+        preg_match('/\|([^|]+)\|/', $this->planSummary, $matches);
+        $this->dataType = $matches[1] ?? null;
     }
 
     public static function fromArray(array $data): self
@@ -25,7 +34,7 @@ class DataPlan implements Arrayable
             $data['network_operator'],
             $data['plan_summary'],
             $data['package_code'],
-            $data['plan_id'],
+            $data['plan_id'] ?? null,
             $data['validity'],
             $data['regular_price'],
             $data['agent_price'],

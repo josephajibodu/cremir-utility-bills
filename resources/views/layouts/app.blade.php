@@ -29,7 +29,7 @@
         <div class="page-content">
             @include('partials.topbar')
 
-            <main class="flex-grow p-6 overflow-y-scroll">
+            <main class="flex-grow p-6 overflow-y-scroll overflow-hidden max-w-[100%]">
                 @yield('content')
             </main>
 
