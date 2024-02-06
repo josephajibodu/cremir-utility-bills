@@ -3,9 +3,28 @@
         $selectedPackage = isset($package) && $package ? \App\Services\AirtimeNigeria\DataObject\DataPlan::fromArray($package) : null;
     @endphp
 
-    <form>
-        <div class="flex flex-col lg:flex-row flex-wrap">
+    <form wire:submit="purchaseData">
+        <div class="flex flex-col lg:flex-row flex-wrap gap-4">
             <div class="lg:w-8/12">
+
+                @if ($errors->any())
+                    <div class="bg-danger/25 text-danger text-sm rounded-md p-4 mb-4 me-6" role="alert">
+                        <div class="flex items-center gap-3">
+                            <div class="flex-shrink-0">
+                                <i class="mgc_badge-check text-xl"></i>
+                            </div>
+                            <div class="flex-grow">
+                                <ul class="list-disc">
+                                    @foreach ($errors->all() as $error)
+                                        <li class="">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+                {{-- Select Network Operator --}}
                 <div class="flex gap-4 lg:gap-8 mb-6">
                     <label
                         class="border-2 {{ $network == \App\Enums\Network::MTN ? 'border-black' : ''}} rounded-xl w-full h-12 lg:w-24 lg:h-24 flex items-center justify-center group">
@@ -44,6 +63,7 @@
                     </label>
                 </div>
 
+                {{-- Enter phone number --}}
                 <div class="mb-12">
                     <label for="phonenumber"
                            class="text-gray-800 text-sm font-medium inline-block mb-2">Select a
@@ -59,6 +79,7 @@
                                class="form-input ltr:rounded-l-none rtl:rounded-r-none"/>
                     </div>
 
+                    {{-- Recent phone numbers --}}
                     <div class="flex flex-col lg:flex-row mt-3 gap-4">
                         <div wire:click="selectContact('08167297386')"
                              class="inline-flex items-center gap-3 py-1 px-2 rounded-lg text-xs font-medium bg-blue-100 text-gray-800 w-fit">
@@ -66,27 +87,11 @@
                             <small class="text-sm">0816 729 7386</small>
                         </div>
 
-                        <div wire:click="selectContact('08137297386')"
-                             class="inline-flex items-center gap-3 py-1 px-2 rounded-lg text-xs font-medium bg-blue-100 text-gray-800 w-fit">
-                            <small class="text-[10px]">GLO</small>
-                            <small class="text-sm">0816 729 7386</small>
-                        </div>
-
-                        <div wire:click="selectContact('08167297386')"
-                             class="inline-flex items-center gap-3 py-1 px-2 rounded-lg text-xs font-medium bg-blue-100 text-gray-800 w-fit">
-                            <small class="text-[10px]">Airtel</small>
-                            <small class="text-sm">0816 729 7386</small>
-                        </div>
-
-                        <div wire:click="selectContact('08157297386')"
-                             class="inline-flex items-center gap-3 py-1 px-2 rounded-lg text-xs font-medium bg-blue-100 text-gray-800 w-fit">
-                            <small class="text-[10px]">MTN</small>
-                            <small class="text-sm">0816 729 7386</small>
-                        </div>
                     </div>
                 </div>
 
                 <div>
+                    {{-- Package filters --}}
                     <nav class="flex space-x-3 border-b max-w-[100%]" aria-label="Filters">
                         @foreach($activePlanGroup as $title => $plans)
                             <button wire:click="filterBy('{{ $title }}')" type="button"
@@ -96,6 +101,7 @@
                         @endforeach
                     </nav>
 
+                    {{-- Packages list --}}
                     <div class="mt-3 overflow-hidden">
                         <div class="flex flex-wrap gap-3 mb-6">
                             @foreach($activePlanGroup[$dataFilter] as $plan)
@@ -104,7 +110,7 @@
                                 @endphp
 
                                 <div wire:click="selectPackage('{{ $planObj->packageCode }}')"
-                                    class="inline-flex flex-col items-center gap-1.5 w-[90px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
+                                     class="cursor-pointer inline-flex flex-col items-center gap-1.5 w-[90px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
                                     <span class="text-base font-semibold">{{ $planObj->bundle }}</span>
                                     <span class="text-xs">{{ $planObj->validity }}</span>
                                     <span
@@ -127,48 +133,59 @@
 
             </div>
 
-            <div class="lg:w-4/12">
-                <h4 class="font-semibold text-lg mb-6">Transaction Details</h4>
+            <div class="flex-grow">
+                {{-- Transaction details/summary--}}
+                <div>
+                    <h4 class="font-semibold text-lg mb-6">Transaction Details</h4>
 
-                <div class="flex gap-3 items-center px-2 py-3 border-b">
-                    <div class="flex flex-col flex-grow">
-                        <div class="flex justify-between">
-                            <p>Operator</p>
-                            <span class="font-bold uppercase">{{ $network }}</span>
+                    <div class="flex gap-3 items-center px-2 py-3 border-b">
+                        <div class="flex flex-col flex-grow">
+                            <div class="flex justify-between">
+                                <p>Operator</p>
+                                <span class="font-semibold uppercase">{{ $network }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="flex gap-3 items-center px-2 py-3 border-b">
-                    <div class="flex flex-col flex-grow">
-                        <div class="flex justify-between">
-                            <p>Recipient</p>
-                            <span class="font-bold">{{ $phone }}</span>
+                    <div class="flex gap-3 items-center px-2 py-3 border-b">
+                        <div class="flex flex-col flex-grow">
+                            <div class="flex justify-between">
+                                <p>Recipient</p>
+                                <span class="font-semibold">{{ $phone }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="flex gap-3 items-center px-2 py-3 border-b">
-                    <div class="flex flex-col flex-grow">
-                        <div class="flex justify-between">
-                            <p>Package</p>
-                            <span class="font-bold">{{ $selectedPackage->planSummary ?? '-' }}</span>
+                    <div class="flex gap-3 items-center px-2 py-3 border-b">
+                        <div class="flex flex-col flex-grow">
+                            <div class="flex justify-between">
+                                <p>Package</p>
+                                <span class="font-semibold">{{ $selectedPackage->planSummary ?? '-' }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="flex gap-3 items-center px-2 py-3 border-b">
-                    <div class="flex flex-col flex-grow">
-                        <div class="flex justify-between">
-                            <p>Package Amount</p>
-                            <span class="font-bold"> -&#8358;2,500.00</span>
+                    <div class="flex gap-3 items-center px-2 py-3 border-b">
+                        <div class="flex flex-col flex-grow">
+                            <div class="flex justify-between">
+                                <p>Package Amount</p>
+                                <span
+                                    class="font-semibold"> &#8358; {{ Number::format($selectedPackage->agentPrice ?? '0', locale: 'en') }}</span>
+                            </div>
                         </div>
                     </div>
+
                 </div>
+
+                <button class="btn bg-dark text-white mt-4 disabled:opacity-50">
+                    Purchase Data Plan (&#8358;{{ Number::format($selectedPackage->agentPrice ?? '0', locale: 'en') }})
+                </button>
 
             </div>
+
         </div>
 
+        {{-- offcanvas--}}
         <div id="pay-now"
              class="fc-offcanvas-open:translate-y-0 translate-y-full fixed bottom-0 inset-x-0 transition-all duration-300 transform max-h-[40vh] h-full w-full z-50 bg-white border-b dark:bg-gray-800 dark:border-gray-700 hidden">
             <div class="flex justify-between items-center py-2 px-4 border-b dark:border-gray-700">
@@ -199,4 +216,6 @@
             </div>
         </div>
     </form>
+
+
 </div>

@@ -2,7 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Actions\DataTopup\PurchaseData;
 use App\Enums\Network;
+use App\Models\User;
 use App\Services\AirtimeNigeria\DataObject\DataPlan;
 use App\Services\AirtimeNigeria\Topup;
 use Livewire\Component;
@@ -11,11 +13,11 @@ class DataTopup extends Component
 {
     public Network $network = Network::MTN;
 
-    public string $phone;
+    public string $phone = '';
 
-    public array $package;
+    public array $package = [];
 
-    public string $maxAmount;
+    public int $maxAmount = 0;
 
     public string $customerReference = 'oluwayomi-1';
 
@@ -39,6 +41,7 @@ class DataTopup extends Component
 
     public function updated($property)
     {
+        $this->resetValidation();
         if ($property === 'network') {
             $this->phone = '';
             $this->updatePlans();
@@ -52,8 +55,32 @@ class DataTopup extends Component
 
     public function selectPackage(string $packageCode)
     {
+        $this->resetValidation();
         $plans = $this->activePlanGroup[$this->dataFilter];
         $this->package = collect($plans)->first(fn ($plan) => DataPlan::fromArray($plan)->packageCode == $packageCode);
+    }
+
+    public function purchaseData(PurchaseData $purchaseDataAction)
+    {
+        // Remove any non-numeric characters from the phone number
+        $cleanedPhoneNumber = preg_replace('/[^0-9]/', '', $this->phone);
+
+        $pattern = '/^(234|0)([789][01])\d{8}$/';
+
+        if (!preg_match($pattern, $cleanedPhoneNumber)) {
+            $this->addError('phone', 'Phone number is invalid');
+        }
+
+        if (!$this->package) {
+            $this->addError('package', 'You must select a Data package');
+        }
+
+        // Make the call to purchase data here
+        $purchaseDataAction->execute(null, $this->network, DataPlan::fromArray($this->package));
+
+        // show a popup that tells the user that the purchase was successful
+
+        // when they click okay, reload the page
     }
 
     public function mount(Topup $topup)
