@@ -7,6 +7,8 @@ use App\Enums\Network;
 use App\Models\User;
 use App\Services\AirtimeNigeria\DataObject\DataPlan;
 use App\Services\AirtimeNigeria\Topup;
+use Exception;
+use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
 
 class DataTopup extends Component
@@ -15,7 +17,7 @@ class DataTopup extends Component
 
     public string $phone = '';
 
-    public array $package = [];
+    public array|null $package = null;
 
     public int $maxAmount = 0;
 
@@ -63,24 +65,48 @@ class DataTopup extends Component
     public function purchaseData(PurchaseData $purchaseDataAction)
     {
         // Remove any non-numeric characters from the phone number
-        $cleanedPhoneNumber = preg_replace('/[^0-9]/', '', $this->phone);
+//        $cleanedPhoneNumber = preg_replace('/[^0-9]/', '', $this->phone);
+//
+//        $pattern = '/^(234|0)([789][01])\d{8}$/';
 
-        $pattern = '/^(234|0)([789][01])\d{8}$/';
+//        if (!preg_match($pattern, $cleanedPhoneNumber)) {
+//            $this->addError('phone', 'Phone number is invalid');
+//        }
+//
+//        if (!$this->package) {
+//            $this->addError('package', 'You must select a Data package');
+//        }
 
-        if (!preg_match($pattern, $cleanedPhoneNumber)) {
-            $this->addError('phone', 'Phone number is invalid');
+        $validated = Validator::make(
+        // Data to validate...
+            [
+                'phone' => $this->phone,
+                'package' => $this->package['package_code'] ?? null
+            ],
+
+            // Validation rules to apply...
+            $rules = [
+                'phone'   => ["required", "regex:/^(\+234|0)([789][01])\d{8}/"],
+                'package' => ["required"],
+            ],
+
+            // Custom validation messages...
+            [
+                'phone.required' => 'Please enter the recipient phone number',
+                'phone.regex' => 'Phone number is invalid',
+                'package.required' => 'You must select a data bundle',
+            ],
+        )->validate();
+
+        try {
+            // Make the call to purchase data here
+            $purchaseDataAction->execute(null, $this->network, DataPlan::fromArray($this->package));
+
+            // send out data-purchased event
+            $this->dispatch('data-purchased');
+        } catch (Exception $ex) {
+            $this->dispatch('data-purchase-error', message: $ex->getMessage());
         }
-
-        if (!$this->package) {
-            $this->addError('package', 'You must select a Data package');
-        }
-
-        // Make the call to purchase data here
-        $purchaseDataAction->execute(null, $this->network, DataPlan::fromArray($this->package));
-
-        // show a popup that tells the user that the purchase was successful
-
-        // when they click okay, reload the page
     }
 
     public function mount(Topup $topup)

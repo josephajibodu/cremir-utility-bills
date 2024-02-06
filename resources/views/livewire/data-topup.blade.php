@@ -216,6 +216,24 @@
             </div>
         </div>
     </form>
-
-
 </div>
+
+@script
+<script>
+    $wire.on('data-purchased', (event) => {
+        Swal.fire({
+            title: "Good job!",
+            text: "You clicked the button!",
+            icon: "success"
+        });
+    });
+
+    $wire.on('data-purchase-error', (event) => {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: event.message,
+        });
+    });
+</script>
+@endscript

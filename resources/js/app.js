@@ -2,6 +2,8 @@ import "./bootstrap";
 
 import "@frostui/tailwindcss";
 import feather from "feather-icons";
+import Swal from 'sweetalert2';
+// window.swal = swal
 
 /**
  * Theme: Konrix - Responsive Tailwind Admin Dashboard
