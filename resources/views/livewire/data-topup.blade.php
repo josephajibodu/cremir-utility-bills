@@ -27,38 +27,38 @@
                 {{-- Select Network Operator --}}
                 <div class="flex gap-4 lg:gap-8 mb-6">
                     <label
-                        class="border-2 {{ $network == \App\Enums\Network::MTN ? 'border-black' : ''}} rounded-xl w-full h-12 lg:w-24 lg:h-24 flex items-center justify-center group">
+                        class="border-4 {{ $network == \App\Enums\Network::MTN ? 'border-yellow-500' : ''}} rounded-xl w-full h-12 lg:w-24 lg:h-24 flex items-center justify-center group">
                         <input type="radio" value="{{ \App\Enums\Network::MTN }}" wire:model.live="network"
                                class="hidden">
                         <img alt="mtn"
-                             class="w-[100%] group-hover:saturate-50 {{ $network == \App\Enums\Network::MTN ? 'saturate-100' : 'saturate-0'}}"
+                             class="w-[100%] group-hover:saturate-100 {{ $network == \App\Enums\Network::MTN ? 'saturate-100' : 'saturate-0'}}"
                              src="{{ asset('images/providers/mtn.svg') }}"/>
                     </label>
 
                     <label
-                        class="border-2 {{ $network == \App\Enums\Network::AIRTEL ? 'border-black' : ''}} rounded-xl w-full h-12 lg:w-24 lg:h-24 flex items-center justify-center group">
+                        class="border-4 {{ $network == \App\Enums\Network::AIRTEL ? 'border-red-600' : ''}} rounded-xl w-full h-12 lg:w-24 lg:h-24 flex items-center justify-center group">
                         <input type="radio" value="{{ \App\Enums\Network::AIRTEL }}" wire:model.live="network"
                                class="hidden">
                         <img alt="airtel"
-                             class="w-[70%] group-hover:saturate-50 {{ $network == \App\Enums\Network::AIRTEL ? 'saturate-100' : 'saturate-0'}}"
+                             class="w-[70%] group-hover:saturate-100 {{ $network == \App\Enums\Network::AIRTEL ? 'saturate-100' : 'saturate-0'}}"
                              src="{{ asset('images/providers/airtel.svg') }}"/>
                     </label>
 
                     <label
-                        class="border-2 {{ $network == \App\Enums\Network::_9MOBILE ? 'border-black' : ''}} rounded-xl w-full h-12 lg:w-24 lg:h-24 flex items-center justify-center group">
+                        class="border-4 {{ $network == \App\Enums\Network::_9MOBILE ? 'border-green-800' : ''}} rounded-xl w-full h-12 lg:w-24 lg:h-24 flex items-center justify-center group">
                         <input type="radio" value="{{ \App\Enums\Network::_9MOBILE }}" wire:model.live="network"
                                class="hidden">
                         <img alt="9mobile"
-                             class="w-[70%] {{ $network == \App\Enums\Network::_9MOBILE ? 'saturate-100' : 'saturate-0'}}"
+                             class="w-[70%] group-hover:saturate-100 {{ $network == \App\Enums\Network::_9MOBILE ? 'saturate-100' : 'saturate-0'}}"
                              src="{{ asset('images/providers/9mobile.svg') }}"/>
                     </label>
 
                     <label
-                        class="border-2 {{ $network == \App\Enums\Network::GLO ? 'border-black' : ''}} rounded-xl w-full h-12 lg:w-24 lg:h-24 flex items-center justify-center group">
+                        class="border-4 {{ $network == \App\Enums\Network::GLO ? 'border-green-600' : ''}} rounded-xl w-full h-12 lg:w-24 lg:h-24 flex items-center justify-center group">
                         <input type="radio" value="{{ \App\Enums\Network::GLO }}" wire:model.live="network"
                                class="hidden">
                         <img alt="glo"
-                             class="w-[70%] {{ $network == \App\Enums\Network::GLO ? 'saturate-100' : 'saturate-0'}}"
+                             class="w-[70%] group-hover:saturate-100 {{ $network == \App\Enums\Network::GLO ? 'saturate-100' : 'saturate-0'}}"
                              src="{{ asset('images/providers/glo.svg') }}"/>
                     </label>
                 </div>
@@ -110,7 +110,7 @@
                                 @endphp
 
                                 <div wire:click="selectPackage('{{ $planObj->packageCode }}')"
-                                     class="cursor-pointer inline-flex flex-col items-center gap-1.5 w-[90px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
+                                     class="cursor-pointer border-2 {{ $planObj->packageCode == ($selectedPackage->packageCode ?? null) ? 'border-green-500' : '' }} inline-flex flex-col items-center gap-1.5 w-[90px] lg:w-[120px] pt-3 rounded-lg text-xs font-medium bg-gray-100 text-gray-800 overflow-hidden">
                                     <span class="text-base font-semibold">{{ $planObj->bundle }}</span>
                                     <span class="text-xs">{{ $planObj->validity }}</span>
                                     <span
@@ -223,7 +223,7 @@
     $wire.on('data-purchased', (event) => {
         Swal.fire({
             title: "Good job!",
-            text: "You clicked the button!",
+            text: "Data purchased",
             icon: "success"
         });
     });

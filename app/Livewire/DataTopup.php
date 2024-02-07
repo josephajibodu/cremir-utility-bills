@@ -2,9 +2,9 @@
 
 namespace App\Livewire;
 
+use App\Actions\Accounting\UserHasSufficientFunds;
 use App\Actions\DataTopup\PurchaseData;
 use App\Enums\Network;
-use App\Models\User;
 use App\Services\AirtimeNigeria\DataObject\DataPlan;
 use App\Services\AirtimeNigeria\Topup;
 use Exception;
@@ -17,7 +17,7 @@ class DataTopup extends Component
 
     public string $phone = '';
 
-    public array|null $package = null;
+    public ?array $package = null;
 
     public int $maxAmount = 0;
 
@@ -46,6 +46,7 @@ class DataTopup extends Component
         $this->resetValidation();
         if ($property === 'network') {
             $this->phone = '';
+            $this->package = null;
             $this->updatePlans();
         }
     }
@@ -62,32 +63,32 @@ class DataTopup extends Component
         $this->package = collect($plans)->first(fn ($plan) => DataPlan::fromArray($plan)->packageCode == $packageCode);
     }
 
-    public function purchaseData(PurchaseData $purchaseDataAction)
+    public function purchaseData(PurchaseData $purchaseDataAction, UserHasSufficientFunds $hasSufficientFunds)
     {
         // Remove any non-numeric characters from the phone number
-//        $cleanedPhoneNumber = preg_replace('/[^0-9]/', '', $this->phone);
-//
-//        $pattern = '/^(234|0)([789][01])\d{8}$/';
+        //        $cleanedPhoneNumber = preg_replace('/[^0-9]/', '', $this->phone);
+        //
+        //        $pattern = '/^(234|0)([789][01])\d{8}$/';
 
-//        if (!preg_match($pattern, $cleanedPhoneNumber)) {
-//            $this->addError('phone', 'Phone number is invalid');
-//        }
-//
-//        if (!$this->package) {
-//            $this->addError('package', 'You must select a Data package');
-//        }
+        //        if (!preg_match($pattern, $cleanedPhoneNumber)) {
+        //            $this->addError('phone', 'Phone number is invalid');
+        //        }
+        //
+        //        if (!$this->package) {
+        //            $this->addError('package', 'You must select a Data package');
+        //        }
 
         $validated = Validator::make(
-        // Data to validate...
+            // Data to validate...
             [
                 'phone' => $this->phone,
-                'package' => $this->package['package_code'] ?? null
+                'package' => $this->package['package_code'] ?? null,
             ],
 
             // Validation rules to apply...
-            $rules = [
-                'phone'   => ["required", "regex:/^(\+234|0)([789][01])\d{8}/"],
-                'package' => ["required"],
+            [
+                'phone' => ['required', "regex:/^(\+234|0)([789][01])\d{8}/"],
+                'package' => ['required'],
             ],
 
             // Custom validation messages...
@@ -99,11 +100,16 @@ class DataTopup extends Component
         )->validate();
 
         try {
+            // Check the users balance
+            $hasSufficientFunds->handle(null);
+
             // Make the call to purchase data here
             $purchaseDataAction->execute(null, $this->network, DataPlan::fromArray($this->package));
 
             // send out data-purchased event
             $this->dispatch('data-purchased');
+
+            $this->resetForm();
         } catch (Exception $ex) {
             $this->dispatch('data-purchase-error', message: $ex->getMessage());
         }
@@ -162,5 +168,11 @@ class DataTopup extends Component
         $this->activePlanGroup = $activeGroups;
 
         $this->dataFilter = array_key_exists('monthly', $activeGroups) ? 'monthly' : array_keys($activeGroups)[0];
+    }
+
+    private function resetForm()
+    {
+        $this->phone = '';
+        $this->package = null;
     }
 }
