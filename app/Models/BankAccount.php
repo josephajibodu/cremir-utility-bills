@@ -6,10 +6,9 @@ use App\Models\Traits\BelongsToUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Wallet extends Model
+class BankAccount extends Model
 {
-    /* Transaction relationship  */
+    /* User relationship  */
     use BelongsToUser;
-
     use HasFactory;
 }
