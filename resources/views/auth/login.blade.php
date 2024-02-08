@@ -11,9 +11,16 @@
                     <img class="h-6 hidden dark:block" src="{{ asset('images/logo-light.png') }}" alt="">
                 </a>
 
+{{--                Password reset status--}}
+                @if (session('status'))
+                    <div class="bg-success/25 text-success text-sm rounded-md p-4 mb-4" role="alert">
+                        <span class="font-bold">Hey!</span> {{ session('status') }}
+                    </div>
+                @endif
+
                 <div class="mb-4">
-                    <label class="block text-sm font-medium text-gray-600 dark:text-gray-200 mb-2" for="LoggingEmailAddress">Email Address</label>
-                    <input id="LoggingEmailAddress" name="email" value="{{ old('email') }}" class="form-input" type="email" placeholder="Enter your email" >
+                    <label class="block text-sm font-medium text-gray-600 dark:text-gray-200 mb-2" for="email">Email Address</label>
+                    <input id="email" name="email" value="{{ old('email') }}" class="form-input" type="email" placeholder="Enter your email" >
                     @error('email')<small class="text-help">{{ $message }}</small>@enderror
                 </div>
 
