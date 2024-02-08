@@ -9,6 +9,6 @@ class GenerateWallet
 {
     public function handle(User $user)
     {
-        return Wallet::create([]);
+        return Wallet::create(['user_id' => $user->id]);
     }
 }

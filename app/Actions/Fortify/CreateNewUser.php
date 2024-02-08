@@ -41,10 +41,12 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
+        $cleanedPhoneNumber = preg_replace('/^(?:\+234|234)/', '', $input['phonenumber']);
+
         $user = User::create([
             'firstname' => $input['firstname'],
             'lastname' => $input['lastname'],
-            'phonenumber' => $input['phonenumber'],
+            'phonenumber' => $cleanedPhoneNumber,
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
         ]);

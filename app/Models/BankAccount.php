@@ -16,4 +16,12 @@ class BankAccount extends Model
     protected $casts = [
         'type' => BankAccountType::class
     ];
+
+    protected $fillable = [
+        'user_id',
+        'name',
+        'holder',
+        'number',
+        'type'
+    ];
 }
