@@ -9,16 +9,16 @@
     </button>
 
     <!-- Topbar Brand Logo -->
-    <a href="index.html" class="logo-box">
+    <a href="{{ route('landing') }}" class="logo-box">
         <!-- Light Brand Logo -->
         <div class="logo-light">
             <img
-                src="assets/images/logo-light.png"
+                src="{{ asset('images/logo-light.png') }}"
                 class="logo-lg h-6"
                 alt="Light logo"
             />
             <img
-                src="assets/images/logo-sm.png"
+                src="{{ asset('images/logo-sm.png') }}"
                 class="logo-sm"
                 alt="Small logo"
             />
@@ -27,12 +27,12 @@
         <!-- Dark Brand Logo -->
         <div class="logo-dark">
             <img
-                src="assets/images/logo-dark.png"
+                src="{{ asset('images/logo-dark.png') }}"
                 class="logo-lg h-6"
                 alt="Dark logo"
             />
             <img
-                src="assets/images/logo-sm.png"
+                src="{{ asset('images/logo-sm.png') }}"
                 class="logo-sm"
                 alt="Small logo"
             />
@@ -329,30 +329,20 @@
                 href="pages-gallery.html"
             >
                 <i class="mgc_pic_2_line me-2"></i>
-                <span>Gallery</span>
-            </a>
-            <a
-                class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                href="apps-kanban.html"
-            >
-                <i class="mgc_task_2_line me-2"></i>
-                <span>Kanban</span>
-            </a>
-            <a
-                class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                href="auth-login.html"
-            >
-                <i class="mgc_lock_line me-2"></i>
-                <span>Lock Screen</span>
+                <span>Profile</span>
             </a>
             <hr class="my-2 -mx-2 border-gray-200 dark:border-gray-700" />
             <a
                 class="flex items-center py-2 px-3 rounded-md text-sm text-gray-800 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
-                href="auth-login.html"
+                href="{{ route('logout') }}"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit()"
             >
                 <i class="mgc_exit_line me-2"></i>
                 <span>Log Out</span>
             </a>
+            <form method="post" action="{{ route('logout') }}" class="hidden" id="logout-form">
+                @csrf
+            </form>
         </div>
     </div>
 </header>
