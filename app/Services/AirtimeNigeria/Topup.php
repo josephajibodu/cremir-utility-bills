@@ -4,11 +4,13 @@ namespace App\Services\AirtimeNigeria;
 
 use App\Services\AirtimeNigeria\DataObject\AirtimeTopupRequest;
 use App\Services\AirtimeNigeria\DataObject\DataTopupRequest;
+use HttpRequest;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Http;
 
 class Topup
 {
+    use HttpRequest;
+
     protected $apiBaseUrl;
 
     protected $apiToken;
@@ -73,18 +75,5 @@ class Topup
         $url = "$this->apiBaseUrl/delivery";
 
         return $this->makeRequest('GET', $url, ['reference' => $reference]);
-    }
-
-    protected function makeRequest(string $method, string $url, ?array $data = null, $headers = [])
-    {
-        $defaultHeaders = collect([
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer '.$this->apiToken,
-        ]);
-
-        $response = Http::withHeaders($defaultHeaders->merge($headers)->toArray())->$method($url, $data)->throw();
-
-        return $response->json();
     }
 }

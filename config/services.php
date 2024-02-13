@@ -34,6 +34,12 @@ return [
     'airtimenigeria' => [
         'url' => env('AIRTIMENIG_BASE_URL'),
         'key' => env('AIRTIMENIG_API_KEY'),
-    ]
+    ],
+
+    'paystack' => [
+        'url' => env('PAYSTACK_BASE_URL'),
+        'key' => env('PAYSTACK_PUBLIC_KEY'),
+        'secret' => env('PAYSTACK_SECRET_KEY'),
+    ],
 
 ];
