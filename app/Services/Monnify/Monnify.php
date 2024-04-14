@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Services\Paystack;
+namespace App\Services\Monnify;
 
 use App\Services\Paystack\DataObject\PaymentInitializationData;
 use App\Services\Paystack\DataObject\PaymentInitializationResponse;
 use App\Services\Paystack\DataObject\VirtualAccountRequestData;
-use HttpRequest;
+use App\Traits\HttpRequest;
 
-class Paystack
+class Monnify
 {
     use HttpRequest;
 
@@ -19,9 +19,9 @@ class Paystack
 
     public function __construct()
     {
-        $this->apiBaseUrl = config('services.paystack.url');
-        $this->publicKey = config('services.paystack.key');
-        $this->secretKey = config('services.paystack.secret');
+        $this->apiBaseUrl = config('services.monnify.url');
+        $this->publicKey = config('services.monnify.key');
+        $this->secretKey = config('services.monnify.secret');
     }
 
     public function initializePayment(PaymentInitializationData $data): PaymentInitializationResponse
